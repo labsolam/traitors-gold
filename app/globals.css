@@ -61,17 +61,17 @@ body {
 
 @keyframes fall {
   0% {
-    transform: translateY(-50px) rotate(0deg);
+    transform: translateY(-50px) rotate(-15deg);
     opacity: 0;
   }
   10% {
-    opacity: 0.7;
+    opacity: 0.5;
   }
   90% {
-    opacity: 0.7;
+    opacity: 0.5;
   }
   100% {
-    transform: translateY(100vh) rotate(720deg);
+    transform: translateY(100vh) rotate(15deg);
     opacity: 0;
   }
 }
