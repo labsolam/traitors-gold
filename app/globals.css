@@ -81,22 +81,25 @@ body {
 .main-container {
   position: relative;
   z-index: 2;
-  min-height: 100dvh;
+  height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-  padding: 2rem;
-  padding-top: max(2rem, env(safe-area-inset-top));
-  padding-bottom: max(2rem, env(safe-area-inset-bottom));
+  justify-content: space-evenly;
+  padding: 1rem;
+  padding-top: calc(1rem + env(safe-area-inset-top));
+  padding-bottom: calc(1rem + env(safe-area-inset-bottom));
+  overflow: hidden;
 }
 
 /* Leprechaun */
 .leprechaun {
-  width: 200px;
+  width: 180px;
   height: auto;
-  margin-bottom: 1rem;
   filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+  flex-shrink: 1;
+  min-height: 0;
+  object-fit: contain;
 }
 
 /* Title */
@@ -105,9 +108,10 @@ body {
   font-size: 8rem;
   color: var(--gold);
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-  margin-bottom: 2rem;
   text-align: center;
   letter-spacing: 0.05em;
+  margin: 0;
+  flex-shrink: 0;
 }
 
 /* Gold display */
@@ -297,19 +301,28 @@ body {
 
 /* Responsive */
 @media (max-width: 600px) {
-  .title {
-    font-size: 4rem;
+  .leprechaun {
+    width: 120px;
   }
 
-  .coin-pile {
-    font-size: 5rem;
+  .title {
+    font-size: 2.5rem;
+  }
+
+  .coin-pile img {
+    width: 100px;
+    height: 100px;
   }
 
   .gold-amount {
-    font-size: 4rem;
+    font-size: 3rem;
   }
 
   .gold-label {
-    font-size: 3rem;
+    font-size: 1.8rem;
+  }
+
+  .gold-display {
+    gap: 0.5rem;
   }
 }
