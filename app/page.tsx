@@ -13,7 +13,7 @@ function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?:
     <svg
       width={size}
       height={size}
-      viewBox="0 0 100 100"
+      viewBox="0 0 100 110"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -24,36 +24,42 @@ function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?:
           <stop offset="100%" stopColor={colors.dark} />
         </linearGradient>
       </defs>
-      {/* Top leaf */}
+      {/* Top leaf - heart shape */}
       <path
-        d="M50 45 C40 45, 30 35, 30 25 C30 15, 40 8, 50 18 C60 8, 70 15, 70 25 C70 35, 60 45, 50 45"
+        d="M50 42 C50 42, 50 30, 38 20 C30 14, 20 18, 20 28 C20 38, 30 46, 50 50 C70 46, 80 38, 80 28 C80 18, 70 14, 62 20 C50 30, 50 42, 50 42 Z"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
-      {/* Bottom leaf */}
+      {/* Left leaf - heart shape rotated */}
       <path
-        d="M50 55 C40 55, 30 65, 30 75 C30 85, 40 92, 50 82 C60 92, 70 85, 70 75 C70 65, 60 55, 50 55"
+        d="M42 50 C42 50, 30 50, 20 38 C14 30, 18 20, 28 20 C38 20, 46 30, 50 50 C46 70, 38 80, 28 80 C18 80, 14 70, 20 62 C30 50, 42 50, 42 50 Z"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
-      {/* Left leaf */}
+      {/* Right leaf - heart shape rotated */}
       <path
-        d="M45 50 C45 40, 35 30, 25 30 C15 30, 8 40, 18 50 C8 60, 15 70, 25 70 C35 70, 45 60, 45 50"
+        d="M58 50 C58 50, 70 50, 80 38 C86 30, 82 20, 72 20 C62 20, 54 30, 50 50 C54 70, 62 80, 72 80 C82 80, 86 70, 80 62 C70 50, 58 50, 58 50 Z"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
-      {/* Right leaf */}
+      {/* Bottom leaf - heart shape */}
       <path
-        d="M55 50 C55 40, 65 30, 75 30 C85 30, 92 40, 82 50 C92 60, 85 70, 75 70 C65 70, 55 60, 55 50"
+        d="M50 58 C50 58, 50 70, 38 80 C30 86, 20 82, 20 72 C20 62, 30 54, 50 50 C70 54, 80 62, 80 72 C80 82, 70 86, 62 80 C50 70, 50 58, 50 58 Z"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1.5"
+        strokeWidth="1"
       />
-      {/* Center dot */}
-      <circle cx="50" cy="50" r="4" fill={colors.dark} />
+      {/* Stem */}
+      <path
+        d="M50 75 Q55 90, 50 105"
+        stroke={colors.dark}
+        strokeWidth="4"
+        fill="none"
+        strokeLinecap="round"
+      />
     </svg>
   )
 }
