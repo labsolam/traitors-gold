@@ -131,6 +131,8 @@ export default function DisplayPage() {
 
   useEffect(() => {
     fetchGold()
+    const interval = setInterval(fetchGold, 2000)
+    return () => clearInterval(interval)
   }, [fetchGold])
 
   return (
@@ -157,8 +159,6 @@ export default function DisplayPage() {
             </>
           )}
         </div>
-
-        <div className="hint">Refresh to update</div>
       </main>
     </>
   )
