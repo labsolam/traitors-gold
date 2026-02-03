@@ -69,8 +69,8 @@ function FourLeafClover({ size = 120, color = 'gold', showStem = true }: { size?
 function GoldCoin({ size = 180 }: { size?: number }) {
   return (
     <img
-      src="https://thumbs.dreamstime.com/b/shamrock-three-leaf-clover-gold-coin-stars-saint-patrick-s-day-irish-lucky-vector-illustration-shamrock-three-leaf-clover-107606572.jpg"
-      alt="Gold coin with shamrock"
+      src="https://e7.pngegg.com/pngimages/244/576/png-clipart-gold-coin-four-leaf-clover-gold-coins-gold-desktop-wallpaper.png"
+      alt="Gold coin with four leaf clover"
       width={size}
       height={size}
       style={{ objectFit: 'contain' }}
