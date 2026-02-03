@@ -90,13 +90,13 @@ body {
 
 /* Title */
 .title {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 2.5rem;
+  font-family: 'UnifrakturMaguntia', Georgia, serif;
+  font-size: 3.5rem;
   color: var(--gold);
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
   margin-bottom: 2rem;
   text-align: center;
-  letter-spacing: 0.1em;
+  letter-spacing: 0.05em;
 }
 
 /* Gold display */
@@ -153,11 +153,10 @@ body {
 }
 
 .gold-label {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-size: 1.5rem;
+  font-family: 'UnifrakturMaguntia', Georgia, serif;
+  font-size: 2rem;
   color: var(--cream);
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.1em;
 }
 
 .hint {
@@ -289,7 +288,7 @@ body {
 /* Responsive */
 @media (max-width: 600px) {
   .title {
-    font-size: 1.8rem;
+    font-size: 2.5rem;
   }
 
   .coin-pile {
@@ -301,6 +300,6 @@ body {
   }
 
   .gold-label {
-    font-size: 1.2rem;
+    font-size: 1.5rem;
   }
 }
