@@ -170,6 +170,11 @@ export default function DisplayPage() {
     <>
       <FallingClovers />
       <main className="main-container">
+        <img
+          src="/leprechaun.webp"
+          alt="Leprechaun"
+          className="leprechaun"
+        />
         <h1 className="title">The Traitors</h1>
 
         <div className="gold-display">

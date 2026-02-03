@@ -88,6 +88,14 @@ body {
   padding: 2rem;
 }
 
+/* Leprechaun */
+.leprechaun {
+  width: 200px;
+  height: auto;
+  margin-bottom: 1rem;
+  filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+}
+
 /* Title */
 .title {
   font-family: 'UnifrakturMaguntia', Georgia, serif;
