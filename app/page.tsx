@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback } from 'react'
 
-function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?: 'gold' | 'green' }) {
+function FourLeafClover({ size = 120, color = 'gold', showStem = true }: { size?: number; color?: 'gold' | 'green'; showStem?: boolean }) {
   const colors = color === 'gold'
     ? { main: '#FFD700', dark: '#B8860B', light: '#FFE55C' }
     : { main: '#228B22', dark: '#006400', light: '#32CD32' }
@@ -12,8 +12,8 @@ function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?:
   return (
     <svg
       width={size}
-      height={size}
-      viewBox="0 0 100 110"
+      height={showStem ? size : size * 0.9}
+      viewBox={showStem ? "0 0 100 110" : "10 10 80 80"}
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
@@ -53,14 +53,60 @@ function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?:
         strokeWidth="1"
       />
       {/* Stem */}
-      <path
-        d="M50 75 Q55 90, 50 105"
-        stroke={colors.dark}
-        strokeWidth="4"
-        fill="none"
-        strokeLinecap="round"
-      />
+      {showStem && (
+        <path
+          d="M50 75 Q55 90, 50 105"
+          stroke={colors.dark}
+          strokeWidth="4"
+          fill="none"
+          strokeLinecap="round"
+        />
+      )}
     </svg>
+  )
+}
+
+function GoldCoin({ size = 180 }: { size?: number }) {
+  return (
+    <div style={{ position: 'relative', width: size, height: size }}>
+      <svg
+        width={size}
+        height={size}
+        viewBox="0 0 100 100"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <defs>
+          <linearGradient id="coinGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FFE55C" />
+            <stop offset="30%" stopColor="#FFD700" />
+            <stop offset="70%" stopColor="#B8860B" />
+            <stop offset="100%" stopColor="#996515" />
+          </linearGradient>
+          <linearGradient id="coinEdge" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#B8860B" />
+            <stop offset="100%" stopColor="#6B4423" />
+          </linearGradient>
+        </defs>
+        {/* Outer edge */}
+        <circle cx="50" cy="50" r="48" fill="url(#coinEdge)" />
+        {/* Main coin face */}
+        <circle cx="50" cy="50" r="44" fill="url(#coinGradient)" />
+        {/* Inner ring */}
+        <circle cx="50" cy="50" r="38" fill="none" stroke="#B8860B" strokeWidth="2" />
+        {/* Shine effect */}
+        <ellipse cx="35" cy="35" rx="12" ry="8" fill="rgba(255,255,255,0.3)" />
+      </svg>
+      {/* Clover on top of coin */}
+      <div style={{
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        transform: 'translate(-50%, -50%)',
+      }}>
+        <FourLeafClover size={size * 0.55} color="green" showStem={false} />
+      </div>
+    </div>
   )
 }
 
@@ -97,13 +143,13 @@ function FallingClovers() {
   )
 }
 
-function AnimatedNumber({ value }: { value: number }) {
-  const [displayValue, setDisplayValue] = useState(value)
+function AnimatedNumber({ value, isInitial }: { value: number; isInitial: boolean }) {
+  const [displayValue, setDisplayValue] = useState(0)
 
   useEffect(() => {
-    const start = displayValue
+    const start = isInitial ? 0 : displayValue
     const end = value
-    const duration = 1000
+    const duration = isInitial ? 3000 : 1000
     const startTime = performance.now()
 
     const animate = (currentTime: number) => {
@@ -122,7 +168,7 @@ function AnimatedNumber({ value }: { value: number }) {
     }
 
     requestAnimationFrame(animate)
-  }, [value])
+  }, [value, isInitial])
 
   return <span>{displayValue.toLocaleString()}</span>
 }
@@ -130,6 +176,7 @@ function AnimatedNumber({ value }: { value: number }) {
 export default function DisplayPage() {
   const [gold, setGold] = useState<number | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [isInitialLoad, setIsInitialLoad] = useState(true)
 
   const fetchGold = useCallback(async () => {
     try {
@@ -144,7 +191,9 @@ export default function DisplayPage() {
   }, [])
 
   useEffect(() => {
-    fetchGold()
+    fetchGold().then(() => {
+      setTimeout(() => setIsInitialLoad(false), 3500)
+    })
     const interval = setInterval(fetchGold, 2000)
     return () => clearInterval(interval)
   }, [fetchGold])
@@ -157,7 +206,7 @@ export default function DisplayPage() {
 
         <div className="gold-display">
           <div className="coin-pile">
-            <FourLeafClover size={180} color="gold" />
+            <GoldCoin size={180} />
           </div>
 
           {gold === null ? (
@@ -167,7 +216,7 @@ export default function DisplayPage() {
           ) : (
             <>
               <div className="gold-amount">
-                <AnimatedNumber value={gold} />
+                <AnimatedNumber value={gold} isInitial={isInitialLoad} />
               </div>
               <div className="gold-label">Gold</div>
             </>
