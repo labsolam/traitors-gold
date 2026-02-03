@@ -69,7 +69,7 @@ function FourLeafClover({ size = 120, color = 'gold', showStem = true }: { size?
 function GoldCoin({ size = 180 }: { size?: number }) {
   return (
     <img
-      src="https://e7.pngegg.com/pngimages/244/576/png-clipart-gold-coin-four-leaf-clover-gold-coins-gold-desktop-wallpaper.png"
+      src="/coin.png"
       alt="Gold coin with four leaf clover"
       width={size}
       height={size}
