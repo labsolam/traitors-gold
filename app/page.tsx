@@ -26,34 +26,34 @@ function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?:
       </defs>
       {/* Top leaf */}
       <path
-        d="M50 45 C50 30, 35 20, 50 5 C65 20, 50 30, 50 45"
+        d="M50 45 C40 45, 30 35, 30 25 C30 15, 40 8, 50 18 C60 8, 70 15, 70 25 C70 35, 60 45, 50 45"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1"
+        strokeWidth="1.5"
       />
       {/* Bottom leaf */}
       <path
-        d="M50 55 C50 70, 35 80, 50 95 C65 80, 50 70, 50 55"
+        d="M50 55 C40 55, 30 65, 30 75 C30 85, 40 92, 50 82 C60 92, 70 85, 70 75 C70 65, 60 55, 50 55"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1"
+        strokeWidth="1.5"
       />
       {/* Left leaf */}
       <path
-        d="M45 50 C30 50, 20 35, 5 50 C20 65, 30 50, 45 50"
+        d="M45 50 C45 40, 35 30, 25 30 C15 30, 8 40, 18 50 C8 60, 15 70, 25 70 C35 70, 45 60, 45 50"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1"
+        strokeWidth="1.5"
       />
       {/* Right leaf */}
       <path
-        d="M55 50 C70 50, 80 35, 95 50 C80 65, 70 50, 55 50"
+        d="M55 50 C55 40, 65 30, 75 30 C85 30, 92 40, 82 50 C92 60, 85 70, 75 70 C65 70, 55 60, 55 50"
         fill={`url(#${gradientId})`}
         stroke={colors.dark}
-        strokeWidth="1"
+        strokeWidth="1.5"
       />
-      {/* Center */}
-      <circle cx="50" cy="50" r="6" fill={colors.dark} />
+      {/* Center dot */}
+      <circle cx="50" cy="50" r="4" fill={colors.dark} />
     </svg>
   )
 }
