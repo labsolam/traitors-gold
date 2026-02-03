@@ -91,7 +91,7 @@ body {
 /* Title */
 .title {
   font-family: 'UnifrakturMaguntia', Georgia, serif;
-  font-size: 5rem;
+  font-size: 8rem;
   color: var(--gold);
   text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
   margin-bottom: 2rem;
@@ -153,7 +153,7 @@ body {
 
 .gold-label {
   font-family: 'UnifrakturMaguntia', Georgia, serif;
-  font-size: 3rem;
+  font-size: 5rem;
   color: var(--cream);
   letter-spacing: 0.1em;
 }
@@ -287,7 +287,7 @@ body {
 /* Responsive */
 @media (max-width: 600px) {
   .title {
-    font-size: 3rem;
+    font-size: 4rem;
   }
 
   .coin-pile {
@@ -299,6 +299,6 @@ body {
   }
 
   .gold-label {
-    font-size: 2rem;
+    font-size: 3rem;
   }
 }
