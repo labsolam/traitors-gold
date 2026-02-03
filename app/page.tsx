@@ -2,81 +2,89 @@
 
 import { useEffect, useState, useCallback } from 'react'
 
-function TraitorsShield({ size = 120 }: { size?: number }) {
+function FourLeafClover({ size = 120, color = 'gold' }: { size?: number; color?: 'gold' | 'green' }) {
+  const colors = color === 'gold'
+    ? { main: '#FFD700', dark: '#B8860B', light: '#FFE55C' }
+    : { main: '#228B22', dark: '#006400', light: '#32CD32' }
+
+  const gradientId = `cloverGradient-${color}-${Math.random().toString(36).substr(2, 9)}`
+
   return (
     <svg
       width={size}
-      height={size * 1.15}
-      viewBox="0 0 100 115"
+      height={size}
+      viewBox="0 0 100 100"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
     >
-      {/* Shield shape */}
-      <path
-        d="M50 2 L95 15 L95 50 C95 80 75 100 50 113 C25 100 5 80 5 50 L5 15 Z"
-        fill="url(#shieldGradient)"
-        stroke="#B8860B"
-        strokeWidth="3"
-      />
-      {/* Inner border */}
-      <path
-        d="M50 10 L88 21 L88 50 C88 75 70 92 50 103 C30 92 12 75 12 50 L12 21 Z"
-        fill="none"
-        stroke="#FFD700"
-        strokeWidth="1.5"
-        opacity="0.6"
-      />
-      {/* Decorative cross/dagger */}
-      <path
-        d="M50 25 L50 85 M35 45 L65 45"
-        stroke="#FFD700"
-        strokeWidth="4"
-        strokeLinecap="round"
-      />
-      {/* Dagger point */}
-      <path
-        d="M50 85 L45 75 L50 90 L55 75 Z"
-        fill="#FFD700"
-      />
-      {/* Top ornament */}
-      <circle cx="50" cy="25" r="5" fill="#FFD700" />
       <defs>
-        <linearGradient id="shieldGradient" x1="50" y1="0" x2="50" y2="115" gradientUnits="userSpaceOnUse">
-          <stop offset="0%" stopColor="#3D2B46" />
-          <stop offset="50%" stopColor="#2D1B36" />
-          <stop offset="100%" stopColor="#1a0f20" />
+        <linearGradient id={gradientId} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor={colors.light} />
+          <stop offset="50%" stopColor={colors.main} />
+          <stop offset="100%" stopColor={colors.dark} />
         </linearGradient>
       </defs>
+      {/* Top leaf */}
+      <path
+        d="M50 45 C50 30, 35 20, 50 5 C65 20, 50 30, 50 45"
+        fill={`url(#${gradientId})`}
+        stroke={colors.dark}
+        strokeWidth="1"
+      />
+      {/* Bottom leaf */}
+      <path
+        d="M50 55 C50 70, 35 80, 50 95 C65 80, 50 70, 50 55"
+        fill={`url(#${gradientId})`}
+        stroke={colors.dark}
+        strokeWidth="1"
+      />
+      {/* Left leaf */}
+      <path
+        d="M45 50 C30 50, 20 35, 5 50 C20 65, 30 50, 45 50"
+        fill={`url(#${gradientId})`}
+        stroke={colors.dark}
+        strokeWidth="1"
+      />
+      {/* Right leaf */}
+      <path
+        d="M55 50 C70 50, 80 35, 95 50 C80 65, 70 50, 55 50"
+        fill={`url(#${gradientId})`}
+        stroke={colors.dark}
+        strokeWidth="1"
+      />
+      {/* Center */}
+      <circle cx="50" cy="50" r="6" fill={colors.dark} />
     </svg>
   )
 }
 
-function FallingShields() {
-  const [shields, setShields] = useState<Array<{ id: number; left: number; delay: number; duration: number }>>([])
+function FallingClovers() {
+  const [clovers, setClovers] = useState<Array<{ id: number; left: number; delay: number; duration: number; color: 'gold' | 'green' }>>([])
 
   useEffect(() => {
-    const newShields = Array.from({ length: 12 }, (_, i) => ({
+    const newClovers = Array.from({ length: 15 }, (_, i) => ({
       id: i,
       left: Math.random() * 100,
       delay: Math.random() * 5,
       duration: 4 + Math.random() * 4,
+      color: (Math.random() > 0.5 ? 'gold' : 'green') as 'gold' | 'green',
     }))
-    setShields(newShields)
+    setClovers(newClovers)
   }, [])
 
   return (
     <div className="coins-container">
-      {shields.map((shield) => (
+      {clovers.map((clover) => (
         <span
-          key={shield.id}
+          key={clover.id}
           className="falling-coin"
           style={{
-            left: `${shield.left}%`,
-            animationDelay: `${shield.delay}s`,
-            animationDuration: `${shield.duration}s`,
+            left: `${clover.left}%`,
+            animationDelay: `${clover.delay}s`,
+            animationDuration: `${clover.duration}s`,
           }}
         >
-          <TraitorsShield size={30} />
+          <FourLeafClover size={35} color={clover.color} />
         </span>
       ))}
     </div>
@@ -137,13 +145,13 @@ export default function DisplayPage() {
 
   return (
     <>
-      <FallingShields />
+      <FallingClovers />
       <main className="main-container">
         <h1 className="title">The Traitors</h1>
 
         <div className="gold-display">
           <div className="coin-pile">
-            <TraitorsShield size={180} />
+            <FourLeafClover size={180} color="gold" />
           </div>
 
           {gold === null ? (
