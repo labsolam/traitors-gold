@@ -16,7 +16,8 @@
 
 html, body {
   height: 100%;
-  overflow: hidden;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 body {
@@ -80,12 +81,14 @@ body {
 .main-container {
   position: relative;
   z-index: 2;
-  min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding: 2rem;
+  padding-top: max(2rem, env(safe-area-inset-top));
+  padding-bottom: max(2rem, env(safe-area-inset-bottom));
 }
 
 /* Leprechaun */
